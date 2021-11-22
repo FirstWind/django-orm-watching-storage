@@ -3,11 +3,11 @@ import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '',
-        'PORT': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'HOST': 'checkpoint.devman.org',
+        'PORT': '5434',
+        'NAME': 'checkpoint',
+        'USER': 'guard',
+        'PASSWORD': 'osim5',
     }
 }
 
@@ -36,6 +36,6 @@ USE_L10N = True
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Asia/Chita'
 
 USE_TZ = True
