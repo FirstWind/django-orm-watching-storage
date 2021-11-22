@@ -1,0 +1,31 @@
+venv/
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+# Distribution / packaging
+.Python
+env/
+venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+.gitignore
+.idea/
+.git/
