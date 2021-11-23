@@ -5,7 +5,7 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    url(r'^$', active_passcards_view, name="active_passcards"),
-    url(r'^storage_information$', storage_information_view, name="storage_information"),
-    url(r'^passcard_info/(?P<passcode>[\w\-]+)/$', passcard_info_view, name="passcard_info"),
+    url(r"^$", active_passcards_view, name="active_passcards"),
+    url(r"^storage_information$", storage_information_view, name="storage_information"),
+    url(r"^passcard_info/(?P<passcode>[\w\-]+)/$", passcard_info_view, name="passcard_info"),
 ]

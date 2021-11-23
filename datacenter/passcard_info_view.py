@@ -1,25 +1,24 @@
 from django.utils import timezone
-
-from datacenter.models import Passcard, Visit
 from django.shortcuts import render
 
 from datacenter.storage_information_view import format_duration
+from datacenter.models import Passcard, Visit
 
 
 def passcard_info_view(request, passcode):
     this_passcard_visits = []
-    detail_info = Visit.objects.filter(passcard__passcode=passcode).values()
-    for item in detail_info:
-        duration = Visit.get_duration(item)
+    visits = Visit.objects.filter(passcard__passcode=passcode)
+    for visit in visits:
+        duration = visit.get_duration()
         this_passcard_visits.append(
             {
-                "entered_at": str(timezone.localtime(item["entered_at"])), "duration": format_duration(duration),
-                "is_strange": Visit.is_visit_long(item)
+                "entered_at": str(timezone.localtime(visit.entered_at)), "duration": format_duration(duration),
+                "is_strange": visit.is_visit_long()
                 }
             )
     passcard = Passcard.objects.filter(passcode=passcode)
     context = {
-        'passcard': passcard,
-        'this_passcard_visits': this_passcard_visits
+        "passcard": passcard,
+        "this_passcard_visits": this_passcard_visits
         }
-    return render(request, 'passcard_info.html', context)
+    return render(request, "passcard_info.html", context)

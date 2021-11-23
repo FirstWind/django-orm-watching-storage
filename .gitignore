@@ -1,10 +1,10 @@
-venv/
 ### Python ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
+.gitignore
 # Distribution / packaging
 .Python
+.replit
 env/
 venv/
 build/
@@ -26,6 +26,5 @@ var/
 *.pyc
 __pycache__/
 local_settings.py
-.gitignore
 .idea/
 .git/

@@ -1,32 +1,32 @@
 from django.utils import timezone
+from django.shortcuts import render
 
 from datacenter.models import Passcard
 from datacenter.models import Visit
-from django.shortcuts import render
 
 
 def format_duration(duration):
     hours = int(duration // 3600)
     minutes = int((duration % 3600) // 60)
     seconds = int(duration % 60)
-    return '{}ч {}мин {}сек'.format(hours, minutes, seconds)
+    return "{}ч {}мин {}сек".format(hours, minutes, seconds)
 
 
 def storage_information_view(request):
-    inside = Visit.objects.filter(leaved_at__isnull=True).values()
+    visits = Visit.objects.filter(leaved_at__isnull=True)
 
     non_closed_visits = []
-    for item in inside:
-        owner = Passcard.objects.filter(id=item["passcard_id"]).values()[0]
-        duration = Visit.get_duration(item)
+    for visit in visits:
+        duration = visit.get_duration()
+        owner = Passcard.objects.filter(id=visit.passcard_id)
         non_closed_visits.append(
             {
-                "who_entered": owner["owner_name"], "entered_at": str(timezone.localtime(item["entered_at"])),
+                "who_entered": owner[0].owner_name, "entered_at": str(timezone.localtime(visit.entered_at)),
                 "duration": format_duration(duration)
                 }
             )
 
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        "non_closed_visits": non_closed_visits,
         }
-    return render(request, 'storage_information.html', context)
+    return render(request, "storage_information.html", context)
