@@ -15,12 +15,6 @@ git clone https://github.com/FirstWind/django-orm-watching-storage.git
 ```
 pip install -r requirements.txt
 ```
-- Запустите сайт командой 
-```python
-python main.py
-```
-- Перейдите на сайт по адресу: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
 ### Подключение к Базе Данных
 Измените значения в файле `project/settings.py` на:  
 ```python
@@ -38,6 +32,14 @@ DATABASES = {
 SECRET_KEY = "REPLACE_ME"
 ```
 В параметре `TIME_ZONE` установите временную зону вашего региона
+
+- Запустите сайт командой 
+```python
+python main.py
+```
+- Перейдите на сайт по адресу: [https://127.0.0.1:8000](http://127.0.0.1:8000)  
+Если разворачиваете проект на replit.org, тогда адрес: [https://0.0.0.0:8000](http://0.0.0.0:8000)
+
 
 ### Цель проекта
 
