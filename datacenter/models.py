@@ -27,13 +27,13 @@ class Visit(models.Model):
             leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
-    def get_duration(visit):
-        if visit.leaved_at:
-            delta = visit.leaved_at - visit.entered_at
+    def get_duration(self):
+        if self.leaved_at:
+            delta = self.leaved_at - self.entered_at
         else:
-            delta = timezone.now() - visit.entered_at
+            delta = timezone.now() - self.entered_at
         seconds = delta.total_seconds()
         return seconds
 
-    def is_visit_long(visit, minutes=60):
-        return visit.get_duration() // 60 > minutes
+    def is_visit_long(self, minutes=60):
+        return self.get_duration() // 60 > minutes
