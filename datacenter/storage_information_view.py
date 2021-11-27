@@ -1,8 +1,7 @@
-from django.utils import timezone
 from django.shortcuts import render
+from django.utils import timezone
 
-from datacenter.models import Passcard
-from datacenter.models import Visit
+from datacenter.models import Passcard, Visit
 
 
 def format_duration(duration):
@@ -19,10 +18,14 @@ def storage_information_view(request):
     for visit in visits:
         duration = visit.get_duration()
         owner = Passcard.objects.filter(id=visit.passcard_id)
+        if visit.is_visit_long():
+            is_strange = "Да!"
+        else:
+            is_strange = "Нет"
         non_closed_visits.append(
             {
                 "who_entered": owner[0].owner_name, "entered_at": str(timezone.localtime(visit.entered_at)),
-                "duration": format_duration(duration)
+                "duration": format_duration(duration), "is_strange": is_strange,
                 }
             )
 
