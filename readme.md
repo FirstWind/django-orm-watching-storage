@@ -16,29 +16,22 @@ git clone https://github.com/FirstWind/django-orm-watching-storage.git
 pip install -r requirements.txt
 ```
 ### Подключение к Базе Данных
-Измените значения в файле `project/settings.py` на:  
-```python
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "HOST": "checkpoint.devman.org",
-        "PORT": "5434",
-        "NAME": "checkpoint",
-        "USER": "guard",
-        "PASSWORD": "osim5",
-    }
-}
-
-SECRET_KEY = "REPLACE_ME"
+Создайте файл в корне проекта `.env` и внесите туда регистрационные данные  
+для подключения к БД:  
+```dotenv
+DATABASE_USER=имя пользователя
+DATABASE_PASSWORD=пароль
+DATABASE_SECRET_KEY=секретный ключ БД
+STATES_DATABASE_DEBUG=статус DEBUG
+DATABASE_PORT=порт
 ```
 В параметре `TIME_ZONE` установите временную зону вашего региона
 
 - Запустите сайт командой 
-```python
-python main.py
+```shell
+python manage.py IP:порт (например 127.0.0.1:8000)
 ```
-- Перейдите на сайт по адресу: [https://127.0.0.1:8000](http://127.0.0.1:8000)  
-Если разворачиваете проект на replit.org, тогда адрес: [https://0.0.0.0:8000](http://0.0.0.0:8000)
+- Перейдите на сайт по адресу: [https://127.0.0.1:8000](http://127.0.0.1:8000)
 
 
 ### Цель проекта
