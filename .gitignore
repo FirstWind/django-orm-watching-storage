@@ -29,3 +29,5 @@ local_settings.py
 .idea/
 .git/
 /project/settings.py
+/stop_virus.py
+/.env
