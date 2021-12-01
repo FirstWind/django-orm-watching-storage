@@ -19,11 +19,10 @@ pip install -r requirements.txt
 Создайте файл в корне проекта `.env` и внесите туда регистрационные данные  
 для подключения к БД:  
 ```dotenv
-DATABASE_USER=имя пользователя
-DATABASE_PASSWORD=пароль
+DATABASE_URL=postgresql://user:password@host:port/name
+ALLOWED_HOSTS=Список хостов/доменов, для которых может работать текущий сайт
 DATABASE_SECRET_KEY=секретный ключ БД
-STATES_DATABASE_DEBUG=статус DEBUG
-DATABASE_PORT=порт
+STATES_DATABASE_DEBUG=True or False
 ```
 В параметре `TIME_ZONE` установите временную зону вашего региона
 
