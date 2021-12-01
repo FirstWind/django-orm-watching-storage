@@ -1,41 +1,33 @@
 import os
 
-from environs import Env
+import environ
 
-env = Env()
-env.read_env()
+env = environ.Env(
+    DEBUG=(bool, False)
+    )
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "HOST": "checkpoint.devman.org",
-        "PORT": env.str("DATABASE_PORT"),
-        "NAME": "checkpoint",
-        "USER": env.str("DATABASE_USER"),
-        "PASSWORD": env.str("DATABASE_PASSWORD")
-    }
-}
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env.str("DATABASE_SECRET_KEY")
+DATABASES = {"default": env.db()}
+
+SECRET_KEY = env("DATABASE_SECRET_KEY")
+
+DEBUG = env("DEBUG")
 
 INSTALLED_APPS = ["datacenter"]
 
-DEBUG = env.bool("STATES_DATABASE_DEBUG")
-
 ROOT_URLCONF = "project.urls"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
-    },
-]
-
+        },
+    ]
 
 USE_L10N = True
 

@@ -6,7 +6,7 @@
 
 Python3 должен быть уже установлен. 
 
-- Скачайте код с GitHab 
+- Скачайте код с GitHub 
 ```
 git clone https://github.com/FirstWind/django-orm-watching-storage.git
 ```
